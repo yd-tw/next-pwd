@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>密碼驗證</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: rgb(249, 250, 251);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 12px;
+        border: rgb(209, 213, 220) 1px solid;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 16px;
+        border: 2px solid black;
+        border-radius: 8px;
+        outline: none;
+        transition: all 0.2s;
+      }
+
+      input[type="password"]:focus {
+        border-color: #111;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        background: black;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.1s;
+      }
+
+      button:active {
+        transform: scale(0.95);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .error {
+        background-color: #fed7d7;
+        color: #c53030;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        border-left: 4px solid #c53030;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        margin-top: 16px;
+        color: #718096;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>密碼驗證</h1>
+
+      {{#if errorMessage}}
+      <div class="error">{{errorMessage}}</div>
+      {{/if}}
+
+      <form id="loginForm">
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autofocus
+            placeholder="請輸入密碼..."
+          />
+        </div>
+
+        <button type="submit" id="submitBtn">登入</button>
+
+        <div class="loading" id="loading">驗證中...</div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const loading = document.getElementById("loading");
+      const passwordInput = document.getElementById("password");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const password = passwordInput.value;
+        const callbackURL =
+          new URLSearchParams(window.location.search).get("callbackURL") || "/";
+
+        submitBtn.disabled = true;
+        loading.style.display = "block";
+
+        try {
+          const response = await fetch("/api/pwd/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ password, callbackURL }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            window.location.href = callbackURL;
+          } else {
+            window.location.href =
+              "/api/pwd/signin?error=1&callbackURL=" +
+              encodeURIComponent(callbackURL);
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          window.location.href =
+            "/api/pwd/signin?error=1&callbackURL=" +
+            encodeURIComponent(callbackURL);
+        } finally {
+          submitBtn.disabled = false;
+          loading.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
