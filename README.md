@@ -65,9 +65,7 @@ export const config = {
 ```typescript
 import { createNextPwdHandler } from "next-pwd";
 
-export const { GET, POST } = createNextPwdHandler({
-  maxAge: 86400, // 24 小時
-});
+export const { GET, POST } = createNextPwdHandler();
 ```
 
 就這樣！你的網站現在已經有密碼保護了。
@@ -76,7 +74,7 @@ export const { GET, POST } = createNextPwdHandler({
 
 ### 自訂 Cookie 設定
 
-你可以自訂 `Cookie` 生效時長
+你可以自訂 `Cookie` 生效時長 (預設為 20 分鐘)
 
 ```typescript
 const handler = createNextPwdHandler({

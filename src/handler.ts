@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import path from "path";
+import signHtml from "./sign.html";
 
 interface NextPwdConfig {
   /** Cookie 過期時間（秒），預設 24 小時 */
@@ -10,8 +9,7 @@ interface NextPwdConfig {
 
 export function createNextPwdHandler(config: NextPwdConfig = {}) {
   const { maxAge = 1200 } = config;
-  const filePath = path.join(process.cwd(), "src/utils/login.html");
-  let html = fs.readFileSync(filePath, "utf-8");
+  let html = signHtml;
 
   const handler = async (
     request: NextRequest,

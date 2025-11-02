@@ -1,6 +1,6 @@
 {
   "name": "next-pwd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The simplest Next.js password protection package.",
   "license": "MIT",
   "author": "twyd",
@@ -12,7 +12,7 @@
     "password"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsup"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
@@ -21,6 +21,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.18.0",
     "next": "^16.0.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
