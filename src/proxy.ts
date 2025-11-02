@@ -20,7 +20,7 @@ export function checkPwd({
   const token = req.cookies.get("nextpwd_token")?.value;
 
   try {
-    jwt.verify(token || "", process.env.NEXRPWD_SECRET!);
+    jwt.verify(token || "", process.env.NEXTPWD_SECRET!);
     return {
       authenticated: true,
       loginUrl: null,

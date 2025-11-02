@@ -59,7 +59,7 @@ export function createNextPwdHandler(config: NextPwdConfig = {}) {
 
         const token = jwt.sign(
           { authenticated: true },
-          process.env.NEXRPWD_SECRET!,
+          process.env.NEXTPWD_SECRET!,
           { expiresIn: maxAge },
         );
 

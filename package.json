@@ -1,7 +1,7 @@
 {
   "name": "next-pwd",
   "version": "0.1.0",
-  "description": "",
+  "description": "The simplest Next.js password protection package.",
   "license": "MIT",
   "author": "twyd",
   "type": "module",
