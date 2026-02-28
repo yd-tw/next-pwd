@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2021", // use string replaceAll
     "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,

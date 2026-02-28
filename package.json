@@ -13,7 +13,8 @@
     "auth"
   ],
   "scripts": {
-    "build": "tsdown"
+    "build": "tsdown",
+    "test": "vitest run"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.3"
@@ -23,7 +24,8 @@
     "@types/node": "^22.18.0",
     "next": "^16.0.0",
     "tsdown": "^0.20.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "next": "^15.0.0 || ^16.0.0"
