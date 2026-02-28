@@ -119,15 +119,12 @@
         </div>
 
         <button type="submit" id="submitBtn">登入</button>
-
-        <div class="loading" id="loading">驗證中...</div>
       </form>
     </div>
 
     <script>
       const form = document.getElementById("loginForm");
       const submitBtn = document.getElementById("submitBtn");
-      const loading = document.getElementById("loading");
       const passwordInput = document.getElementById("password");
 
       form.addEventListener("submit", async (e) => {
@@ -138,7 +135,7 @@
           new URLSearchParams(window.location.search).get("callbackURL") || "/";
 
         submitBtn.disabled = true;
-        loading.style.display = "block";
+        submitBtn.textContent = "驗證中...";
 
         try {
           const response = await fetch("/api/pwd/signin", {
@@ -165,7 +162,7 @@
             encodeURIComponent(callbackURL);
         } finally {
           submitBtn.disabled = false;
-          loading.style.display = "none";
+          submitBtn.textContent = "登入";
         }
       });
     </script>
