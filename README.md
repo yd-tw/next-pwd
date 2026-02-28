@@ -15,10 +15,6 @@
 
 ```bash
 npm install next-pwd
-# 或
-yarn add next-pwd
-# 或
-pnpm add next-pwd
 ```
 
 ## 快速開始
@@ -32,9 +28,9 @@ NEXTPWD_PASSWORD=your_password
 NEXTPWD_SECRET=your_secret
 ```
 
-### 2. 配置 Middleware
+### 2. 配置 Proxy
 
-在 `proxy.ts` 中 (Next.js 15 前稱為 middleware.ts)：
+在 `proxy.ts` 中 (Next.js 15 前稱為 `middleware.ts`)：
 
 ```typescript
 import { NextResponse } from "next/server";
@@ -102,8 +98,6 @@ export default function HeroSection() {
 
 - 此套件適合用於簡單的密碼保護場景
 - 不建議用於需要多用戶管理的情況
-- 在生產環境中，請使用 HTTPS
-- Cookie 在生產環境自動啟用 `secure` 標記
 
 ## 授權
 

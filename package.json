@@ -1,15 +1,16 @@
 {
   "name": "next-pwd",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0",
   "description": "The simplest Next.js password protection package.",
   "license": "MIT",
   "author": "yd-tw",
   "type": "module",
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "keywords": [
     "next.js",
-    "password"
+    "password",
+    "auth"
   ],
   "scripts": {
     "build": "tsdown"
